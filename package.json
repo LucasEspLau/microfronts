@@ -1,0 +1,10 @@
+{
+  "name": "microfronts",
+  "version": "1.0.0",
+  "scripts": {
+    "build:microfront-1": "cd microfront-1 && npm install && npm run build",
+    "build:microfront-2": "cd microfront-2 && npm install && npm run build",
+    "build": "npm run build:microfront-1 && npm run build:microfront-2"
+  },
+  "dependencies": {}
+}
