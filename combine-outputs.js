@@ -1,19 +1,20 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
-const distDir = path.join(__dirname, 'dist');
+// Directorios de salida de cada microfrontend
+const microfront1Dist = path.join(__dirname, 'microfront-1/dist');
+const microfront2Dist = path.join(__dirname, 'microfront-2/dist');
+// Directorio combinado donde se copiarán los archivos
+const combinedDist = path.join(__dirname, 'dist');
 
-// Elimina el directorio de salida si existe
-if (fs.existsSync(distDir)) {
-  fs.rmSync(distDir, { recursive: true, force: true });
-}
+// Limpia el directorio combinado si existe
+fs.emptyDirSync(combinedDist);
 
-// Crear el directorio de salida
-fs.mkdirSync(distDir);
+// Copia los archivos de microfront-1 al directorio combinado
+fs.copySync(microfront1Dist, combinedDist, { overwrite: true });
 
-// Copia el contenido de los directorios de los microfrontends
-['microfront-1/dist', 'microfront-2/dist'].forEach((sourceDir) => {
-  fs.cpSync(sourceDir, distDir, { recursive: true });
-});
+// Copia los archivos de microfront-2 al directorio combinado
+fs.copySync(microfront2Dist, combinedDist, { overwrite: true });
 
-console.log('Microfrontends combinados correctamente en el directorio dist');
+// Asegúrate de que los archivos no se sobrescriban de forma no deseada
+console.log('Archivos combinados en', combinedDist);
