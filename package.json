@@ -1,0 +1,18 @@
+{
+  "name": "microfronts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build:microfront-1": "cd microfront-1 && npm i && npm run build",
+    "build:microfront-2": "cd microfront-2 && npm i && npm run build",
+    "build:combined": "npm i && node combine-outputs.js",
+    "build": "npm run build:microfront-1 && npm run build:microfront-2 && npm run build:combined"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
